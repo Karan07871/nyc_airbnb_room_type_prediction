@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Airbnb AI | Room Type Predictor</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- Background decoration -->
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+
+    <main class="page">
+
+        <!-- ================= HEADER ================= -->
+
+        <header class="topbar">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    AI
+                </div>
+
+                <div>
+                    <h2>Airbnb AI</h2>
+                    <span>Room Type Predictor</span>
+                </div>
+
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                AI Model Online
+            </div>
+
+        </header>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    Machine Learning Classification
+                </div>
+
+                <h1>
+                    Predict the
+                    <span>Room Type</span>
+                </h1>
+
+                <p>
+                    Enter Airbnb listing details and let our machine
+                    learning model predict whether the listing is an
+                    Entire Home, Private Room, or Shared Room.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MAIN CARD ================= -->
+
+        <section class="main-card">
+
+            <!-- LEFT SIDE : FORM -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Listing Details</h2>
+
+                        <p>
+                            Provide information about the Airbnb listing.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- Quick Actions -->
+
+                <div class="quick-actions">
+
+                    <button
+                        type="button"
+                        id="demoButton"
+                        class="secondary-button"
+                    >
+                        Load Demo Data
+                    </button>
+
+                    <button
+                        type="button"
+                        id="resetButton"
+                        class="text-button"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <form id="predictionForm">
+
+                    <!-- Location -->
+
+                    <div class="form-group">
+
+                        <label for="latitude">
+                            Latitude
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">LAT</span>
+
+                            <input
+                                type="number"
+                                id="latitude"
+                                step="any"
+                                placeholder="40.723"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="longitude">
+                            Longitude
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">LNG</span>
+
+                            <input
+                                type="number"
+                                id="longitude"
+                                step="any"
+                                placeholder="-73.955"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Price -->
+
+                    <div class="form-group">
+
+                        <label for="price">
+                            Price per Night
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">$</span>
+
+                            <input
+                                type="number"
+                                id="price"
+                                min="0"
+                                placeholder="150"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Minimum Nights -->
+
+                    <div class="form-group">
+
+                        <label for="minimum_nights">
+                            Minimum Nights
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">N</span>
+
+                            <input
+                                type="number"
+                                id="minimum_nights"
+                                min="1"
+                                placeholder="3"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Reviews -->
+
+                    <div class="form-group">
+
+                        <label for="number_of_reviews">
+                            Number of Reviews
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">R</span>
+
+                            <input
+                                type="number"
+                                id="number_of_reviews"
+                                min="0"
+                                placeholder="25"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Reviews per month -->
+
+                    <div class="form-group">
+
+                        <label for="reviews_per_month">
+                            Reviews per Month
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">M</span>
+
+                            <input
+                                type="number"
+                                id="reviews_per_month"
+                                min="0"
+                                step="any"
+                                placeholder="1.5"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Host listings -->
+
+                    <div class="form-group">
+
+                        <label for="calculated_host_listings_count">
+                            Host Listings Count
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">H</span>
+
+                            <input
+                                type="number"
+                                id="calculated_host_listings_count"
+                                min="0"
+                                placeholder="2"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Availability -->
+
+                    <div class="form-group">
+
+                        <label for="availability_365">
+                            Availability
+                            <span class="label-hint">/ 365 days</span>
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">365</span>
+
+                            <input
+                                type="number"
+                                id="availability_365"
+                                min="0"
+                                max="365"
+                                placeholder="120"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Borough -->
+
+                    <div class="form-group">
+
+                        <label for="neighbourhood_group">
+                            Neighbourhood Group
+                        </label>
+
+                        <div class="input-wrapper select-wrapper">
+
+                            <span class="input-icon">NY</span>
+
+                            <select
+                                id="neighbourhood_group"
+                                required
+                            >
+
+                                <option value="">
+                                    Select Borough
+                                </option>
+
+                                <option value="Manhattan">
+                                    Manhattan
+                                </option>
+
+                                <option value="Brooklyn">
+                                    Brooklyn
+                                </option>
+
+                                <option value="Queens">
+                                    Queens
+                                </option>
+
+                                <option value="Bronx">
+                                    Bronx
+                                </option>
+
+                                <option value="Staten Island">
+                                    Staten Island
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Neighbourhood -->
+
+                    <div class="form-group">
+
+                        <label for="neighbourhood">
+                            Neighbourhood
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">LOC</span>
+
+                            <input
+                                type="text"
+                                id="neighbourhood"
+                                placeholder="Williamsburg"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        id="predictButton"
+                        class="predict-button"
+                    >
+
+                        <span id="buttonText">
+                            Predict Room Type
+                        </span>
+
+                        <span
+                            id="loadingSpinner"
+                            class="spinner"
+                        ></span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- RIGHT SIDE : RESULT -->
+
+            <div class="result-section">
+
+                <div class="result-header">
+
+                    <div>
+
+                        <span class="result-label">
+                            AI PREDICTION
+                        </span>
+
+                        <h2>Prediction Result</h2>
+
+                    </div>
+
+                    <div class="model-badge">
+                        Random Forest
+                    </div>
+
+                </div>
+
+
+                <!-- Initial state -->
+
+                <div
+                    id="emptyResult"
+                    class="empty-result"
+                >
+
+                    <div class="empty-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        Ready to predict
+                    </h3>
+
+                    <p>
+                        Enter the listing details on the left
+                        and click the prediction button.
+                    </p>
+
+                </div>
+
+
+                <!-- Actual result -->
+
+                <div
+                    id="predictionResult"
+                    class="prediction-result"
+                >
+
+                    <div class="prediction-icon">
+                        ✓
+                    </div>
+
+                    <span class="prediction-small">
+                        PREDICTED ROOM TYPE
+                    </span>
+
+                    <h3 id="predictionText">
+                        Entire home/apt
+                    </h3>
+
+                    <div class="confidence-container">
+
+                        <div class="confidence-heading">
+
+                            <span>
+                                Model Confidence
+                            </span>
+
+                            <strong id="confidenceText">
+                                --
+                            </strong>
+
+                        </div>
+
+                        <div class="progress-bar">
+
+                            <div
+                                id="confidenceBar"
+                                class="progress-fill"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Probability list -->
+
+                    <div
+                        id="probabilities"
+                        class="probabilities"
+                    >
+
+                    </div>
+
+
+                    <!-- Listing summary -->
+
+                    <div class="summary">
+
+                        <h4>
+                            Listing Summary
+                        </h4>
+
+                        <div class="summary-grid">
+
+                            <div class="summary-item">
+
+                                <span>Location</span>
+
+                                <strong id="summaryLocation">
+                                    --
+                                </strong>
+
+                            </div>
+
+                            <div class="summary-item">
+
+                                <span>Price</span>
+
+                                <strong id="summaryPrice">
+                                    --
+                                </strong>
+
+                            </div>
+
+                            <div class="summary-item">
+
+                                <span>Reviews</span>
+
+                                <strong id="summaryReviews">
+                                    --
+                                </strong>
+
+                            </div>
+
+                            <div class="summary-item">
+
+                                <span>Availability</span>
+
+                                <strong id="summaryAvailability">
+                                    --
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Error -->
+
+                <div
+                    id="errorResult"
+                    class="error-result"
+                >
+
+                    <div class="error-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Prediction failed
+                        </h3>
+
+                        <p id="errorMessage">
+                            Something went wrong.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="model-info">
+
+                    <div class="info-item">
+                        <span class="info-dot"></span>
+                        FastAPI Backend
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-dot"></span>
+                        Random Forest
+                    </div>
+
+                    <div class="info-item">
+                        <span class="info-dot"></span>
+                        NYC Airbnb Dataset
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <footer>
+
+            <p>
+                NYC Airbnb Room Type Classification
+            </p>
+
+            <span>
+                Machine Learning Project
+            </span>
+
+        </footer>
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script src="./script.js"></script>
+
+</body>
+
+</html>
